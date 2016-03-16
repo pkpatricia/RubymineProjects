@@ -1,0 +1,25 @@
+<%= form_for(@appearance) do |f| %>
+  <% if @appearance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@appearance.errors.count, "error") %> prohibited this appearance from being saved:</h2>
+
+      <ul>
+      <% @appearance.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :movie_id %><br>
+		<%= f.select :movie_id, Movie.all.collect{|movie| [movie.title, movie.id]} %>
+  </div>
+  <div class="field">
+    <%= f.label :actor_id %><br>
+    <%= f.select :actor_id, Actor.all.collect{|actor| [actor.name, actor.id]} %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

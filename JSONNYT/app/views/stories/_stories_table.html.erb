@@ -1,0 +1,14 @@
+<table class="table table-striped table-bordered">
+  <tr>
+    <th>Title</th>
+    <th>Story URL</th>
+    <th>Date Published</th>
+  </tr>
+  <% @nyt_stories.each do |story| %>
+    <tr>
+      <td><%= story["title"] %></td>      
+      <td><%= story["url"]  %></td>  
+      <td><%= story["published_date"] %></td>    
+    </tr>
+  <% end %>
+</table>

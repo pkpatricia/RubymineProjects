@@ -1,0 +1,17 @@
+
+
+<script>
+  $(function () {
+    $("#refresh_button").click(function() {
+      $.get("/stories/get_stories", null, function(data) { 
+        $("#stories_table").html(data);
+      });
+    });
+  });
+</script>
+
+<h1>NYT Stories</h1>
+
+<button id="refresh_button">Refresh the list of NYT Stories</button>
+
+<div id="stories_table"></div>

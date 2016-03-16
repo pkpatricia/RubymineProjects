@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @movie.title %>
+</p>
+
+<p>
+  <strong>Release date:</strong>
+  <%= @movie.release_date %>
+</p>
+
+<p>
+  <strong>Running time:</strong>
+  <%= @movie.running_time %>
+</p>
+
+<p>
+  <strong>Actors appearing in this movie</strong>
+  <table class="table">
+    <tr>
+      <th>Name</th>
+      
+    </tr>
+    <% @movie.actors.each do |actor| %>
+      <tr>
+        <td><%= actor.name %></td>
+      </tr>
+    <% end %>
+  </table>
+</p>
+
+<%= link_to 'Edit', edit_movie_path(@movie) %> |
+<%= link_to 'Back', movies_path %>

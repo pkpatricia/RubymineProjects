@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MississippiPhase1</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="<%= controller_name %>">
+<% if not session[:user].nil? then %>
+  <p>
+    User <%= display_email(session[:user]) %> is signed in.
+    <%= link_to 'Sign out', session_sign_out_path %>
+  </p>
+  <hr>
+<% end %>
+<%= yield %>
+<h1>Written by Patricia Parker</h1>
+</body>
+</html>
