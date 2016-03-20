@@ -1,3 +1,6 @@
 class User < ActiveRecord::Base
-	validates :email, presence:true
+	has_one :cart, dependent: :destroy
+	
+	has_secure_password
+	validates :email, uniqueness: true
 end

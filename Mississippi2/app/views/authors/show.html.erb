@@ -15,5 +15,20 @@
   <%= @author.birthdate %>
 </p>
 
+<p>
+  <strong>Books this author has written:</strong>
+  <table class="table">
+    <tr>
+      <th>Title</th>
+      
+    </tr>
+		<% @author.books.each do |book| %>
+      <tr>
+				<td><%= book.title %></td>
+      </tr>
+    <% end %>
+  </table>
+</p>
+
 <%= link_to 'Edit', edit_author_path(@author) %> |
 <%= link_to 'Back', authors_path %>

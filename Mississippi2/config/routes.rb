@@ -1,5 +1,20 @@
 Rails.application.routes.draw do
-  resources :carts
+  get 'session/sign_in'
+
+  get 'session/sign_out'
+	post "session/sign_in"
+  post "session/sign_out"
+
+  resources :users
+  get 'welcome/index'
+
+  resources :items
+  resources :publications
+	resources :carts do
+		member do
+			put 'checkout'
+		end
+	end
   resources :users
   resources :authors
   resources :books
@@ -8,6 +23,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+	root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

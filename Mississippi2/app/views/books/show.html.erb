@@ -25,5 +25,20 @@
   <%= @book.price %>
 </p>
 
+<p>
+  <strong>Author:</strong>
+  <table class="table">
+    <tr>
+      <th>Name</th>
+      
+    </tr>
+    <% @book.authors.each do |author| %>
+      <tr>
+        <td><%= author.name %></td>
+      </tr>
+    <% end %>
+  </table>
+</p>
+
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>

@@ -1,4 +1,5 @@
 class AuthorsController < ApplicationController
+	before_filter :check_that_user_signed_in
   before_action :set_author, only: [:show, :edit, :update, :destroy]
 
   # GET /authors

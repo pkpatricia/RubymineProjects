@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+	before_filter :check_that_user_signed_in
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
 
   # GET /carts
@@ -15,27 +16,24 @@ class CartsController < ApplicationController
   # GET /carts/new
   def new
     @cart = Cart.new
+		@cart.user_id = session[:user]
   end
 
   # GET /carts/1/edit
   def edit
   end
 
-  # POST /carts
-  # POST /carts.json
-  def create
-    @cart = Cart.new(cart_params)
-
-    respond_to do |format|
-      if @cart.save
-        format.html { redirect_to @cart, notice: 'Cart was successfully created.' }
-        format.json { render :show, status: :created, location: @cart }
-      else
-        format.html { render :new }
-        format.json { render json: @cart.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+# POST /carts
+def create
+	@cart = Cart.new(cart_params)
+	@cart.user_id= session[:user]
+	if @cart.save
+		session[:cart] = @cart.id
+		redirect_to @cart, :notice => 'Cart was successfully created.' 
+	else
+		render :new
+	end
+end
 
   # PATCH/PUT /carts/1
   # PATCH/PUT /carts/1.json
@@ -54,12 +52,24 @@ class CartsController < ApplicationController
   # DELETE /carts/1
   # DELETE /carts/1.json
   def destroy
-    @cart.destroy
-    respond_to do |format|
-      format.html { redirect_to carts_url, notice: 'Cart was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+		@cart = Cart.find(params[:id])
+		@cart.destroy
+		session[:cart] = nil
+		redirect_to root_url
   end
+	
+	# PUT /carts/1/checkout
+	def checkout
+		
+		if session[:cart].nil? then
+			redirect_to root_url
+		else
+			@cart = Cart.find(session[:cart])
+			@cart.destroy
+			session[:cart] = nil
+		end
+			
+	end
 
   private
     # Use callbacks to share common setup or constraints between actions.

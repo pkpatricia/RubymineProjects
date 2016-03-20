@@ -1,0 +1,28 @@
+<h1>Welcome to Mississippi!</h1>
+
+<p>Please select from the following:</p>
+
+<table class="table table-striped table-bordered">
+  <tr>
+    <th>Listings:</th>
+  </tr>
+  <tr>
+    <td><%= link_to "Manage books", books_path %></td>
+  </tr>
+  <tr>
+    <td><%= link_to "Manage authors", authors_path %></td>
+  </tr>
+  <tr>
+    <td><%= link_to "Manage publications", publications_path %></td>
+  </tr>
+  
+</table>
+
+
+<p>
+	<% if session[:cart].nil? then %>
+		<%= link_to 'Start shopping', new_cart_path %>
+	<% else %>
+		<%= link_to 'Continue shopping', cart_path(session[:cart]) %>
+	<% end %>
+</p>
