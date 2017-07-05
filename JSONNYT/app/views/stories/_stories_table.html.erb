@@ -3,12 +3,14 @@
     <th>Title</th>
     <th>Story URL</th>
     <th>Date Published</th>
+    <th>Image</th>
   </tr>
   <% @nyt_stories.each do |story| %>
     <tr>
       <td><%= story["title"] %></td>      
-      <td><%= story["url"]  %></td>  
-      <td><%= story["published_date"] %></td>    
+      <td><a href=<%= story["url"]%>><%= story["url"]%> </a> </td>
+      <td><%= story["published_date"] %></td>
+      <td><%= story["media"] %> <%= story["caption"]  %> <%= story["media-metadata"] %> <%= story["url"] %> </td>
     </tr>
   <% end %>
 </table>
